@@ -1,8 +1,9 @@
+import { EditModal } from "@/components/EditModal";
 import { Button } from "@heroui/react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { BiDollar } from "react-icons/bi";
+import { BiDollar, BiEdit } from "react-icons/bi";
 import { CgCalendarToday } from "react-icons/cg";
 import { FiArrowUpRight, FiMapPin } from "react-icons/fi";
 
@@ -15,12 +16,22 @@ const DestinationDetailsPage = async ({ params }) => {
   console.log(destination);
   //   console.log(id);
 
-  const { _id, imageUrl, price, destinationName, country, duration } =
-    destination;
+  const {
+    _id,
+    imageUrl,
+    price,
+    destinationName,
+    country,
+    duration,
+    description,
+  } = destination;
   return (
     <div className="max-w-7xl mx-auto grid grid-cols-1 items-center">
       <h1 className="text-center">Destination Details Page</h1>
       <div className=" flex justify-center items-center flex-col">
+        {/* edit modal add kora */}
+        <EditModal destination={destination}></EditModal>
+
         <Image
           className="p-4 rounded-3xl"
           alt={destinationName}
@@ -54,7 +65,10 @@ const DestinationDetailsPage = async ({ params }) => {
                 {price}
               </div>
             </div>
-            {/* button */}
+            <p className="text-2xl pt-5 font-bold">OverView:</p>
+            <p>{description}</p>
+            {/* 
+            button
             <Link href={`/destinations/${_id}`}>
               <Button
                 variant="ghost"
@@ -62,7 +76,7 @@ const DestinationDetailsPage = async ({ params }) => {
               >
                 Book Now <FiArrowUpRight />
               </Button>
-            </Link>
+            </Link> */}
           </div>
         </div>
       </div>
